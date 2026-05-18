@@ -19,7 +19,8 @@ const HomeScreen = ({ navigation }) => {
             backgroundColor: "#141414",
           }}
         >
-          <Header/>
+          <Header 
+          onPress={() => navigation.navigate("Car") }/>
           </View>
         <Search />
 

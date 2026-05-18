@@ -1,5 +1,4 @@
 import {
-  Button,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,7 +7,6 @@ import {
 } from "react-native";
 import Header from "../components/header";
 import Search from "../components/search";
-import CardPhones from "../components/cardPhones";
 
 const DetailInformationScreen = ({ navigation, route }) => {
   

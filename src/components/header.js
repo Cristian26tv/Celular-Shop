@@ -9,7 +9,22 @@ function Header({onPress}) {
         <Text style={styles.headerTitle}>Shop</Text>
 
       </View>
-      <EvilIcons name="cart" size={30} color="#F5C518" style={{ position: "absolute", right: 10 }} />
+
+      <Pressable
+        style={{
+          backgroundColor: "#8f8f8e00",
+          padding: 5,
+          borderRadius: 5,
+          width: "10%",
+          alignItems: "center",
+          position: "absolute",
+          right: 10
+        }}
+        onPress={onPress}
+      >
+        <EvilIcons name="cart" size={30} color="#F5C518"/>
+        
+      </Pressable>
     </View>
   );
 }

@@ -11,7 +11,7 @@ function CardPhones({ onPress, name, price, image }) {
     }}>
       
       {/* Antes era texto fijo "iPhone", ahora usa el prop */}
-      <Text style={{ color: "#F5C518", fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+      <Text style={{ color: "#F5C518", fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
         {name}
       </Text>
 

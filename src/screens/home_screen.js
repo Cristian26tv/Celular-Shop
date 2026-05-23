@@ -60,13 +60,14 @@ const HomeScreen = ({ onPress, navigation }) => {
           {phones.map((phone) => (
             <View key={phone.id} style={{ width: "33%" }}>
               <CardPhones
-                name={phone.name}
-                price={phone.price}
-                image={phone.image}
-                onPress={() =>
-                  navigation.navigate("DetailInformation", { phone })
-                }
-              />
+  name={phone.name}
+  price={phone.price}
+  image={phone.image}
+  phone={phone}
+  onPress={() => navigation.navigate("DetailInformation", { phone })}
+/>
+
+              
             </View>
           ))}
         </View>

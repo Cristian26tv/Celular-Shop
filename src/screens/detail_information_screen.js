@@ -17,7 +17,7 @@ const DetailInformationScreen = ({ navigation, route }) => {
     <View style={{ height: "100%", marginTop: 40, backgroundColor: "#0A0A0A" }}>
       <ScrollView>
         <View style={{ backgroundColor: "#141414" }}>
-          <Header />
+          <Header onPress={() => navigation.navigate("Car")}/>
         </View>
         <Search />
 

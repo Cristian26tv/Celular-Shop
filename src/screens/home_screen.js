@@ -1,10 +1,18 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  onPress,
+} from "react-native";
 import Header from "../components/header";
 import Search from "../components/search";
 import CardPhones from "../components/cardPhones";
 import phones from "../data/phones";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ onPress, navigation }) => {
   return (
     <View
       style={{
@@ -14,17 +22,16 @@ const HomeScreen = ({ navigation }) => {
       }}
     >
       <ScrollView>
-         <View
+        <View
           style={{
             backgroundColor: "#141414",
           }}
         >
-          <Header 
-          onPress={() => navigation.navigate("Car") }/>
-          </View>
+          <Header onPress={() => navigation.navigate("Car")} />
+        </View>
+
         <Search />
-
-
+          
         <Text
           style={{
             color: "#F5C518",
@@ -46,8 +53,7 @@ const HomeScreen = ({ navigation }) => {
             flexDirection: "row",
             flexWrap: "wrap",
             alignItems: "flex-start",
-            marginBottom:60
-
+            marginBottom: 60,
           }}
         >
           {/*En vez de repetir CardPhones 18 veces, usamos .map() */}
@@ -57,12 +63,28 @@ const HomeScreen = ({ navigation }) => {
                 name={phone.name}
                 price={phone.price}
                 image={phone.image}
-                onPress={() => navigation.navigate("DetailInformation", { phone })}
+                onPress={() =>
+                  navigation.navigate("DetailInformation", { phone })
+                }
               />
             </View>
           ))}
-
         </View>
+
+        <Pressable
+          style={{
+            backgroundColor: "#F5C518",
+            padding: 5,
+            borderRadius: 5,
+            width: "50%",
+            alignItems: "center",
+          }}
+          onPress={() => navigation.navigate("LoginScreen")}
+        >
+          <Text style={{ color: "#0A0A0A", fontWeight: "bold" }}>Ver</Text>
+        </Pressable>
+
+        
       </ScrollView>
     </View>
   );

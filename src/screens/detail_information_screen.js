@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Image,
+  Pressable,
 } from "react-native";
 import Header from "../components/header";
 import Search from "../components/search";
@@ -29,7 +30,7 @@ const DetailInformationScreen = ({ navigation, route }) => {
           marginHorizontal: 10,
           alignItems: "center",
         }}>
-          {/* Ahora todo usa los datos reales del teléfono seleccionado */}
+         
           <Text style={{ color: "#F5C518", fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
             {phone.name}
           </Text>
@@ -39,6 +40,8 @@ const DetailInformationScreen = ({ navigation, route }) => {
           <Text style={{ color: "#F5C518", fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
             {phone.price}
           </Text>
+
+          
 
           <View style={{
             backgroundColor: "#222222",
@@ -57,9 +60,9 @@ const DetailInformationScreen = ({ navigation, route }) => {
               <Text style={{ color: "#fff", fontSize: 14 }}>{phone.dimension}</Text>
               <Text style={{ color: "#F5C518", fontSize: 18, fontWeight: "bold" }}>CÁMARA</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>CÁMARA PRINCIPAL</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.camera}</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.camaraPrincipal}</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>MPX</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.cameraMpx}</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.MPX}</Text>
             </View>
 
             {/* Línea divisora */}
@@ -69,18 +72,36 @@ const DetailInformationScreen = ({ navigation, route }) => {
             <View style={{ flex: 1, paddingLeft: 10 }}>
               <Text style={{ color: "#F5C518", fontSize: 18, fontWeight: "bold" }}>MEMORIA</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>INTERNA</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.storage}</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.memoriaInterna}</Text>
               <Text style={{ color: "#F5C518", fontSize: 18, fontWeight: "bold" }}>PROCESADOR</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>MARCA</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.processorBrand}</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.marcaProcesador}</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>VELOCIDAD</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.processorSpeed} GHz</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.velocidad} GHz</Text>
               <Text style={{ color: "#f5c51895", fontSize: 15 }}>NÚCLEOS</Text>
-              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.processorCores}</Text>
+              <Text style={{ color: "#fff", fontSize: 14 }}>{phone.nucleos}</Text>
             </View>
           </View>
         </View>
       </ScrollView>
+
+      <Pressable
+            style={{
+              backgroundColor: "#F5C518",
+              padding: 10,
+              borderRadius: 8,
+              width: "100%",
+              alignItems: "center",
+              marginTop: 10,
+              marginBottom: 60,
+            }}
+            onPress={() => navigation.navigate("EditPhone", { phone })}
+          >
+            <Text style={{ color: "#0A0A0A", fontWeight: "bold", fontSize: 16 }}>
+              Editar
+            </Text>
+          </Pressable>
+
     </View>
   );
 };

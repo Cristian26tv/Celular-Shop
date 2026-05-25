@@ -8,6 +8,8 @@ import {
   LoginScreen
 } from "../screens/index";
 import RegisterScreen from "../screens/RegisterScreen";
+import AddPhones from "../screens/addPhones";
+import editPhone from "../screens/editPhone";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,8 @@ export default function AppNavigator() {
         <Stack.Screen name="DetailInformation" component={DetailInformationScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="AddPhones" component={AddPhones} />
+        <Stack.Screen name="EditPhone" component={editPhone} />
 
       
       </Stack.Navigator>

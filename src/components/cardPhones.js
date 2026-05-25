@@ -8,8 +8,8 @@ import {
   Alert,
 } from "react-native";
 import { useCart } from "../context/cartContext";
-
-function CardPhones({ onPress, name, price, image, phone }) {
+import { deletePhone } from "../data/phones";
+function CardPhones({ onPress, name, price, image, phone, onPressDelete }) {
   const { addToCart } = useCart();
   return (
     <View
@@ -21,7 +21,6 @@ function CardPhones({ onPress, name, price, image, phone }) {
         margin: 3,
       }}
     >
-      {/* Antes era texto fijo "iPhone", ahora usa el prop */}
       <Text
         style={{
           color: "#F5C518",
@@ -42,21 +41,22 @@ function CardPhones({ onPress, name, price, image, phone }) {
         {price}
       </Text>
 
-      <Pressable
-        style={{
-          backgroundColor: "#F5C518",
-          padding: 5,
-          borderRadius: 5,
-          width: "50%",
-          alignItems: "center",
-        }}
-        onPress={onPress}
-      >
-        <Text style={{ color: "#0A0A0A", fontWeight: "bold" }}>Ver</Text>
-      </Pressable>
       <View
         style={{ flexDirection: "row", gap: 5, marginTop: 5, marginBottom: 5 }}
       >
+        <Pressable
+          style={{
+            backgroundColor: "#F5C518",
+            padding: 5,
+            borderRadius: 5,
+            width: "50%",
+            alignItems: "center",
+          }}
+          onPress={onPress}
+        >
+          <Text style={{ color: "#0A0A0A", fontWeight: "bold" }}>Ver</Text>
+        </Pressable>
+
         <Pressable
           style={{
             backgroundColor: "#F5C518",
@@ -75,6 +75,30 @@ function CardPhones({ onPress, name, price, image, phone }) {
           </Text>
         </Pressable>
       </View>
+
+      <Pressable
+        style={{
+          backgroundColor: "#ff0000",
+          padding: 5,
+          borderRadius: 5,
+          width: "50%",
+          alignItems: "center",
+        }}
+        onPress={() =>
+          Alert.alert("Eliminar", "¿Estas seguro de eliminar el producto?", [
+            { text: "Cancelar", style: "cancel" },
+            {
+              text: "Eliminar",
+              style: "destructive",
+              onPress: () => onPressDelete(),
+            },
+          ])
+        }
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
+          X
+        </Text>
+      </Pressable>
     </View>
   );
 }

@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
     // // Si todo está bien
-    navigation.navigate("Home");
+    navigation.navigate("Home", { role: result.user.role });
 
     // LOGIN CORRECTO → NAVEGA
     //

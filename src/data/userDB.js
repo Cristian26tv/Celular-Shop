@@ -2,7 +2,14 @@
 
 // Este será nuestro "diccionario" de usuarios en memoria
 // clave: correo, valor: objeto con nombre, correo y password
-const users = {};
+const users = {
+  "admin@celularshop.com": {
+    nombre: "Admin",
+    correo: "admin@celularshop.com",
+    password: "admin123",
+    role: "admin",
+  },
+};
 
 /**
  * Guarda un usuario nuevo.
@@ -14,7 +21,7 @@ export function saveUser(nombre, correo, password) {
     return false;
   }
 
-  users[correo] = { nombre, correo, password };
+  users[correo] = { nombre, correo, password, role: "user" };
   return true;
 }
 
@@ -36,5 +43,5 @@ export function validateUser(correo, password) {
     return { ok: false, reason: 'wrong_password' };
   }
 
-  return { ok: true, user };
+  return { ok: true, user: { ...user, role: user.role } };
 }

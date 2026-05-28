@@ -5,3 +5,4 @@ export { default as LoginScreen } from "./LoginScreen";
 export { default as Register } from "./RegisterScreen";
 export { default as AddPhones } from "./addPhones";
 export { default as EditPhone } from "./editPhone";
+export { default as UserDetailScreen } from "./UserDetailScreen";

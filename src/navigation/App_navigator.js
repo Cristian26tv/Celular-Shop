@@ -5,7 +5,8 @@ import {
   CarScreen,
   HomeScreen,
   DetailInformationScreen,
-  LoginScreen
+  LoginScreen,
+  UserDetailScreen,
 } from "../screens/index";
 import RegisterScreen from "../screens/RegisterScreen";
 import AddPhones from "../screens/addPhones";
@@ -21,6 +22,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Car" component={CarScreen} />
         <Stack.Screen name="DetailInformation" component={DetailInformationScreen} />
+        <Stack.Screen name="UserDetail" component={UserDetailScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="AddPhones" component={AddPhones} />

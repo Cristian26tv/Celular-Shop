@@ -1,7 +1,7 @@
 import EvilIcons from "@react-native-vector-icons/evil-icons";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-function Header({ onPress, onPressAdd }) {
+function Header({ onPress, onPressAdd, role }) {
   return (
     <View style={styles.header}>
       
@@ -13,9 +13,11 @@ function Header({ onPress, onPressAdd }) {
 
       {/* Iconos derecha */}
       <View style={{ flexDirection: "row", gap: 10, marginRight: 10 }}>
-        <Pressable onPress={onPressAdd}>
-          <EvilIcons name="plus" size={35} color="#F5C518" />
-        </Pressable>
+        {role === "admin" && (
+          <Pressable onPress={onPressAdd}>
+            <EvilIcons name="plus" size={35} color="#F5C518" />
+          </Pressable>
+        )}
 
         <Pressable onPress={onPress}>
           <EvilIcons name="cart" size={35} color="#F5C518" />

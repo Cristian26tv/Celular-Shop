@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, Pressable } from "react-native";
 import Header from "../components/header";
 import Search from "../components/search";
 import CardPhones from "../components/cardPhones";
@@ -6,7 +6,8 @@ import phones, { deletePhone } from "../data/phones";
 import { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
+  const role = route.params?.role || "user";
   const [lista, setLista] = useState(Object.values(phones));
 
   useFocusEffect(
@@ -25,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView>
         <View style={{ backgroundColor: "#141414" }}>
           <Header
+            role={role}
             onPress={() => navigation.navigate("Car")}
             onPressAdd={() => navigation.navigate("AddPhones")}
           />
@@ -56,16 +58,39 @@ const HomeScreen = ({ navigation }) => {
           {lista.map((phone, index) => (
             <View key={index} style={{ width: "33%" }}>
               <CardPhones
+                role={role}
                 name={phone.name}
                 price={phone.price}
                 image={phone.image}
                 phone={phone}
-                onPress={() => navigation.navigate("DetailInformation", { phone })}
+                onPress={() => {
+                  if (role === "admin") {
+                    navigation.navigate("DetailInformation", { phone });
+                  } else {
+                    navigation.navigate("UserDetail", { phone });
+                  }
+                }}
                 onPressDelete={() => handleDelete(phone.id)}
               />
             </View>
           ))}
         </View>
+
+        <Pressable
+          style={{
+            backgroundColor: "#eb1313",
+            padding: 12,
+            borderRadius: 8,
+            alignItems: "center",
+            marginHorizontal: 10,
+            marginBottom: 20,
+          }}
+          onPress={() => navigation.navigate("LoginScreen")}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Cerrar sesión
+          </Text>
+        </Pressable>
       </ScrollView>
     </View>
   );

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useCart } from "../context/cartContext";
 import { deletePhone } from "../data/phones";
-function CardPhones({ onPress, name, price, image, phone, onPressDelete }) {
+function CardPhones({ onPress, name, price, image, phone, onPressDelete, role }) {
   const { addToCart } = useCart();
   return (
     <View
@@ -76,29 +76,31 @@ function CardPhones({ onPress, name, price, image, phone, onPressDelete }) {
         </Pressable>
       </View>
 
-      <Pressable
-        style={{
-          backgroundColor: "#ff0000",
-          padding: 5,
-          borderRadius: 5,
-          width: "50%",
-          alignItems: "center",
-        }}
-        onPress={() =>
-          Alert.alert("Eliminar", "¿Estas seguro de eliminar el producto?", [
-            { text: "Cancelar", style: "cancel" },
-            {
-              text: "Eliminar",
-              style: "destructive",
-              onPress: () => onPressDelete(),
-            },
-          ])
-        }
-      >
-        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
-          X
-        </Text>
-      </Pressable>
+      {role === "admin" && (
+        <Pressable
+          style={{
+            backgroundColor: "#ff0000",
+            padding: 5,
+            borderRadius: 5,
+            width: "50%",
+            alignItems: "center",
+          }}
+          onPress={() =>
+            Alert.alert("Eliminar", "¿Estas seguro de eliminar el producto?", [
+              { text: "Cancelar", style: "cancel" },
+              {
+                text: "Eliminar",
+                style: "destructive",
+                onPress: () => onPressDelete(),
+              },
+            ])
+          }
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
+            X
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 }

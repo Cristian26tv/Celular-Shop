@@ -8,8 +8,10 @@ import {
   Alert,
   Pressable,
   ScrollView,
+  Image,
 } from "react-native";
 import { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
 const AddPhones = ({ navigation }) => {
   const [id, setId] = useState("");
@@ -25,6 +27,21 @@ const AddPhones = ({ navigation }) => {
   const [velocidad, setVelocidad] = useState("");
   const [nucleos, setNucleos] = useState("");
 
+
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permiso necesario", "Se requiere acceso a la galería");
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
 
   const addPhone = () => {
     console.log(
@@ -106,13 +123,22 @@ const AddPhones = ({ navigation }) => {
       />
 
       <Text style={styles.label}>Imagen del Telefono</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Agregar la imagen"
-        placeholderTextColor="#999"
-        value={image}
-        onChangeText={setImage}
-      />
+      <Pressable
+        style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
+        onPress={pickImage}
+      >
+        <Text style={styles.buttonText}>Seleccionar imagen de la galería</Text>
+      </Pressable>
+      {image ? (
+        <Image
+          source={{ uri: image }}
+          style={{ width: "100%", height: 200, borderRadius: 10, marginTop: 10 }}
+          resizeMode="contain"
+        />
+      ) : null}
 
       <Text style={styles.label}>Color del Telefono</Text>
       <TextInput

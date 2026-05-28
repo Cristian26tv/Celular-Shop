@@ -5,9 +5,11 @@ import {
   Pressable,
   Alert,
   ScrollView,
+  Image,
 } from "react-native";
 import { useState } from "react";
 import { editPhone } from "../data/phones";
+import * as ImagePicker from "expo-image-picker";
 
 const EditPhone = ({ navigation, route }) => {
   const { phone } = route.params;
@@ -23,6 +25,21 @@ const EditPhone = ({ navigation, route }) => {
   const [marcaProcesador, setMarcaProcesador] = useState(phone.marcaProcesador);
   const [velocidad, setVelocidad] = useState(phone.velocidad);
   const [nucleos, setNucleos] = useState(phone.nucleos);
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permiso necesario", "Se requiere acceso a la galería");
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   const handleEdit = () => {
     if (!name || !price || !image) {
       Alert.alert("Error", "Nombre, precio e imagen son obligatorios");
@@ -101,19 +118,29 @@ const EditPhone = ({ navigation, route }) => {
         onChangeText={setPrice}
       />
 
-      <Text style={{ color: "#F5C518", marginBottom: 4 }}>Imagen (URL)</Text>
-      <TextInput
+      <Text style={{ color: "#F5C518", marginBottom: 4 }}>Imagen del Telefono</Text>
+      <Pressable
         style={{
-          borderWidth: 1,
-          borderColor: "#F5C518",
-          color: "#fff",
-          padding: 10,
-          borderRadius: 5,
+          backgroundColor: "#F5C518",
+          paddingVertical: 12,
+          paddingHorizontal: 20,
+          borderRadius: 10,
+          alignItems: "center",
           marginBottom: 10,
         }}
-        value={image}
-        onChangeText={setImage}
-      />
+        onPress={pickImage}
+      >
+        <Text style={{ color: "#0A0A0A", fontWeight: "bold", fontSize: 16 }}>
+          Seleccionar imagen de la galería
+        </Text>
+      </Pressable>
+      {image ? (
+        <Image
+          source={{ uri: image }}
+          style={{ width: "100%", height: 200, borderRadius: 10, marginBottom: 10 }}
+          resizeMode="contain"
+        />
+      ) : null}
 
       <Text style={{ color: "#F5C518", marginBottom: 4 }}>Color</Text>
       <TextInput

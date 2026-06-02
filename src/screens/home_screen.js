@@ -85,7 +85,7 @@ const HomeScreen = ({ navigation, route }) => {
             marginHorizontal: 10,
             marginBottom: 20,
           }}
-          onPress={() => navigation.navigate("LoginScreen")}
+          onPress={() => navigation.replace("LoginScreen")}
         >
           <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
             Cerrar sesión
